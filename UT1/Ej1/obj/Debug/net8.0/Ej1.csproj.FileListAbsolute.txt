@@ -1,0 +1,15 @@
+C:\Users\vdsur\Desktop\PSEP\Ej1\bin\Debug\net8.0\Ej1.exe
+C:\Users\vdsur\Desktop\PSEP\Ej1\bin\Debug\net8.0\Ej1.deps.json
+C:\Users\vdsur\Desktop\PSEP\Ej1\bin\Debug\net8.0\Ej1.runtimeconfig.json
+C:\Users\vdsur\Desktop\PSEP\Ej1\bin\Debug\net8.0\Ej1.dll
+C:\Users\vdsur\Desktop\PSEP\Ej1\bin\Debug\net8.0\Ej1.pdb
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.AssemblyInfoInputs.cache
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.AssemblyInfo.cs
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.csproj.CoreCompileInputs.cache
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.sourcelink.json
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.dll
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\refint\Ej1.dll
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.pdb
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\Ej1.genruntimeconfig.cache
+C:\Users\vdsur\Desktop\PSEP\Ej1\obj\Debug\net8.0\ref\Ej1.dll

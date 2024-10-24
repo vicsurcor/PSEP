@@ -1,0 +1,14 @@
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\bin\Debug\net8.0\finalBreakfast.exe
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\bin\Debug\net8.0\finalBreakfast.deps.json
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\bin\Debug\net8.0\finalBreakfast.runtimeconfig.json
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\bin\Debug\net8.0\finalBreakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\bin\Debug\net8.0\finalBreakfast.pdb
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\refint\finalBreakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.pdb
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\finalBreakfast.genruntimeconfig.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\finalBreakfast\obj\Debug\net8.0\ref\finalBreakfast.dll

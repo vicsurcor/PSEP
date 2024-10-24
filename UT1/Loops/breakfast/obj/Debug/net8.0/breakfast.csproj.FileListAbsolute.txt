@@ -1,0 +1,14 @@
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\bin\Debug\net8.0\breakfast.exe
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\bin\Debug\net8.0\breakfast.deps.json
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\bin\Debug\net8.0\breakfast.runtimeconfig.json
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\bin\Debug\net8.0\breakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\bin\Debug\net8.0\breakfast.pdb
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\refint\breakfast.dll
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.pdb
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\breakfast.genruntimeconfig.cache
+C:\Users\AlumTA\Desktop\PSEP\Loops\breakfast\obj\Debug\net8.0\ref\breakfast.dll

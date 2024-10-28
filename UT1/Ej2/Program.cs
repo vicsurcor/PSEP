@@ -10,8 +10,10 @@ namespace tareas4.Ejercicio2
 {
     class Program
     {
+        private static readonly object _lockWords = new object();
         static void Main()
         {
+            
             // Retrieve Goncharov's "Oblomov" from Gutenberg.org.
             string[] words = CreateWordArray(@"http://www.gutenberg.org/cache/epub/2000/pg2000.txt");
 
@@ -46,40 +48,49 @@ namespace tareas4.Ejercicio2
         #region HelperMethods
         private static void GetCountForWord(string[] words, string term)
         {
-            var findWord = from word in words
+            lock (_lockWords){
+                var findWord = from word in words
                            where word.ToUpper().Contains(term.ToUpper())
                            select word;
 
-            Console.WriteLine($@"Task 3 -- The word ""{term}"" occurs {findWord.Count()} times.");
+                Console.WriteLine($@"Task 3 -- The word ""{term}"" occurs {findWord.Count()} times.");
+            }
+            
         }
 
         private static void GetMostCommonWords(string[] words)
         {
-            var frequencyOrder = from word in words
+            lock(_lockWords){
+                var frequencyOrder = from word in words
                                  where word.Length > 6
                                  group word by word into g
                                  orderby g.Count() descending
                                  select g.Key;
 
-            var commonWords = frequencyOrder.Take(10);
+                var commonWords = frequencyOrder.Take(10);
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Task 2 -- The most common words are:");
-            foreach (var v in commonWords)
-            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Task 2 -- The most common words are:");
+                foreach (var v in commonWords)
+                {
                 sb.AppendLine("  " + v);
+                }
+                Console.WriteLine(sb.ToString());
             }
-            Console.WriteLine(sb.ToString());
+            
         }
 
         private static string GetLongestWord(string[] words)
         {
-            var longestWord = (from w in words
+            lock (_lockWords){
+                var longestWord = (from w in words
                                orderby w.Length descending
                                select w).First();
 
-            Console.WriteLine($"Task 1 -- The longest word is {longestWord}.");
-            return longestWord;
+                Console.WriteLine($"Task 1 -- The longest word is {longestWord}.");
+                return longestWord;
+            }
+            
         }
 
         // An http request performed synchronously for simplicity.

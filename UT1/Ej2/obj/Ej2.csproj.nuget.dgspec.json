@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\Ej2\\Ej2.csproj": {}
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT1\\Ej2\\Ej2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\Ej2\\Ej2.csproj": {
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT1\\Ej2\\Ej2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\Ej2\\Ej2.csproj",
+        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT1\\Ej2\\Ej2.csproj",
         "projectName": "Ej2",
-        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\Ej2\\Ej2.csproj",
+        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT1\\Ej2\\Ej2.csproj",
         "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\Ej2\\obj\\",
+        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT1\\Ej2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

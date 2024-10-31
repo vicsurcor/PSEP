@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
 
+//Block the words array until it finishes reading not for every use
+
 namespace tareas4.Ejercicio2
 {
     class Program

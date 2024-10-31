@@ -15,33 +15,30 @@ namespace ConsoleApp5
             //t0.Priority = ThreadPriority.AboveNormal
             Thread t = new Thread(new ThreadStart(WriteH));
             //t.Priority = ThreadPriority.Normal
-            Thread t1 = new Thread(new ThreadStart(WriteA));
+            Thread t1 = new Thread(new ThreadStart(WriteL));
+            Thread t2 = new Thread(new ThreadStart(WriteE));
             //t1.Priority = ThreadPriority.BelowNormal;
             t0.Start();
             t.Start();
             t1.Start();
 
-            t0.Join();
-            t.Join();
-            t1.Join();
-
         }
 
         public static void WriteO()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine("O");
-               
-            }
+            
         }
         public static void WriteH()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine("H");
- 
-            }
+            
+        }
+        public static void WriteL()
+        {
+            
+        }
+        public static void WriteE()
+        {
+            
         }
       
     }

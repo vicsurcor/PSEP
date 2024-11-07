@@ -1,0 +1,15 @@
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.sourcelink.json
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\bin\Debug\net8.0\Ej4.exe
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\bin\Debug\net8.0\Ej4.deps.json
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\bin\Debug\net8.0\Ej4.runtimeconfig.json
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\bin\Debug\net8.0\Ej4.dll
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\bin\Debug\net8.0\Ej4.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.dll
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\refint\Ej4.dll
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\Ej4.genruntimeconfig.cache
+C:\Users\AlumTA\Desktop\PSEP\UT2\Ej4\obj\Debug\net8.0\ref\Ej4.dll

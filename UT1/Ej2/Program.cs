@@ -15,9 +15,12 @@ namespace tareas4.Ejercicio2
         private static readonly object _lockWords = new object();
         static void Main()
         {
+            //If the execution is synchronous use this.
+            Task<string[]> task = CreateWordArray(@"http://www.gutenberg.org/cache/epub/2000/pg2000.txt");
+            string[] words = task.Result;
             
-            // Retrieve Goncharov's "Oblomov" from Gutenberg.org.
-            string[] words = CreateWordArray(@"http://www.gutenberg.org/cache/epub/2000/pg2000.txt");
+            //If it is asynchronous, just use await.
+            //string[] words =  await CreateWordArray();
 
             #region ParallelTasks
             // Perform three tasks in parallel on the source array
@@ -96,17 +99,22 @@ namespace tareas4.Ejercicio2
         }
 
         // An http request performed synchronously for simplicity.
-        static string[] CreateWordArray(string uri)
+        public static async Task<string[]> CreateWordArray(string uri)
         {
             Console.WriteLine($"Retrieving from {uri}");
 
-            // Download a web page the easy way.
-            string s = new WebClient().DownloadString(uri);
+            // Download the web page content asynchronously.
+            using (HttpClient client = new HttpClient())
+            {
+                string content = await client.GetStringAsync(uri);
 
-            // Separate string into an array of words, removing some common punctuation.
-            return s.Split(
-                new char[] { ' ', '\u000A', ',', '.', ';', ':', '-', '_', '/' },
-                StringSplitOptions.RemoveEmptyEntries);
+                // Separate string into an array of words, removing common punctuation.
+                string[] words = content.Split(
+                    new char[] { ' ', '\u000A', '\r', ',', '.', ';', ':', '-', '_', '/', '!', '?', '(', ')', '[', ']', '{', '}', '\"', '\'' },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                return words;
+            }
         }
         #endregion
     }

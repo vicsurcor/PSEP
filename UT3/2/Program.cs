@@ -24,19 +24,20 @@ namespace HttpClientAndUri
 
                 {
 
-                    HttpResponseMessage response = await client.GetAsync("http://www.contoso.com/");
+                    HttpResponseMessage response = await client.GetAsync("http://www.c.com/");
 
-                    response.EnsureSuccessStatusCode();
+                    //response.EnsureSuccessStatusCode();
+                    
+                    if(response.IsSuccessStatusCode) {
+                        string responseBody = await response.Content.ReadAsStringAsync();
 
-                    string responseBody = await response.Content.ReadAsStringAsync();
+                        // Above three lines can be replaced with new helper method below
 
-                    // Above three lines can be replaced with new helper method below
+                        // string responseBody = await client.GetStringAsync(uri);
 
-                    // string responseBody = await client.GetStringAsync(uri);
-
-
-                    Console.WriteLine(responseBody);
-
+                        Console.WriteLine("\n" + response.StatusCode);
+                        
+                    }
                 }
 
                 catch (HttpRequestException e)
@@ -45,7 +46,7 @@ namespace HttpClientAndUri
 
                     Console.WriteLine("\nException Caught!");
 
-                    Console.WriteLine("Message :{0} ", e.Message);
+                    Console.WriteLine("Message: {0} Status Code: {1} HResult: {2} RequestError: {3} Data: {4}", e.Message, e.StatusCode, e.HResult, e.HttpRequestError, e.Data);
 
                 }
 

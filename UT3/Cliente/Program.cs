@@ -29,20 +29,30 @@ namespace clientesincrono {
                     sender.Connect(remoteEP);
 
                     Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
+                    byte[] msg = null;
+                    int bytesRec = 0;
+                    int bytesSent = 0;
+                    while (true) {
+                        // Encode the data string into a byte array.  
+                        msg = Encoding.ASCII.GetBytes(Console.ReadLine());
 
-                    // Encode the data string into a byte array.  
-                    byte[] msg = Encoding.ASCII.GetBytes("This is a test");
+                        // Send the data through the socket.  
+                        bytesSent = sender.Send(msg);
 
-                    // Send the data through the socket.  
-                    int bytesSent = sender.Send(msg);
-
-                    // Receive the response from the remote device.  
-                    int bytesRec = sender.Receive(bytes);
-                    Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
-
-                    // Release the socket.  
+                        // Receive the response from the remote device.  
+                        bytesRec = sender.Receive(bytes);
+                        // If the response is a disconnect confirmation
+                        if (Encoding.ASCII.GetString(bytes, 0, bytesRec) == "Solicitud de desconexion") {
+                            break;
+                        }
+                        Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
+                    }
+                    Console.WriteLine("Desconectando");
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
+                    
+                    
+                    
 
                 } catch (ArgumentNullException ane) {
                     Console.WriteLine("ArgumentNullException : {0}", ane.ToString());

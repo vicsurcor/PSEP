@@ -45,26 +45,36 @@ namespace SyncServer
                     // Program is suspended while waiting for an incoming connection.  
                     Socket handler = listener.Accept();
                     data = null;
-                    int bytesRec = handler.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    // An incoming connection needs to be processed.  
-                    while (bytesRec == TAM)
-                    {
+                    int bytesRec = 0;
+                    byte[] msg = null;
+                    while (true){
                         bytesRec = handler.Receive(bytes);
-                        data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        // An incoming connection needs to be processed.  
+                        while (bytesRec == TAM)
+                        {
+                            bytesRec = handler.Receive(bytes);
+                            data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        }
+
+                        // Show the data on the console.  
+                        Console.WriteLine("Text received : {0}", data);
+                        // If the data is a disconnect request
+                        if (data == "Exit") {
+                            break;
+                        }
+
+                        // Echo the data back to the client.  
+                        msg = Encoding.ASCII.GetBytes(data);
+                        handler.Send(msg);
                     }
-
-                    // Show the data on the console.  
-                    Console.WriteLine("Text received : {0}", data);
-
-                    // Echo the data back to the client.  
-                    byte[] msg = Encoding.ASCII.GetBytes(data);
-
+                    // Sends disconnect confirmation
+                    msg = Encoding.ASCII.GetBytes("Solicitud de desconexion");
                     handler.Send(msg);
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();
-                }
 
+                }
             }
             catch (Exception e)
             {

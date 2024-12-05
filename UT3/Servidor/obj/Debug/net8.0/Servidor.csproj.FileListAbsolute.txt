@@ -1,0 +1,15 @@
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\bin\Debug\net8.0\Servidor.exe
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\bin\Debug\net8.0\Servidor.deps.json
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\bin\Debug\net8.0\Servidor.runtimeconfig.json
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\bin\Debug\net8.0\Servidor.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\bin\Debug\net8.0\Servidor.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.sourcelink.json
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\refint\Servidor.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\Servidor.genruntimeconfig.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\Servidor\obj\Debug\net8.0\ref\Servidor.dll

@@ -1,0 +1,5 @@
+C:\Users\AlumTA\Desktop\PSEP\UT3\4\obj\Debug\net8.0\4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT3\4\obj\Debug\net8.0\4.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\4\obj\Debug\net8.0\4.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT3\4\obj\Debug\net8.0\4.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\4\obj\Debug\net8.0\4.sourcelink.json

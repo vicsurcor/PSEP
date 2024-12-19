@@ -1,0 +1,12 @@
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\bin\Debug\net8.0\MsgLib.deps.json
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\bin\Debug\net8.0\MsgLib.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\bin\Debug\net8.0\MsgLib.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.sourcelink.json
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\refint\MsgLib.dll
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\MsgLib.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT3\asynccli\MsgLib\obj\Debug\net8.0\ref\MsgLib.dll

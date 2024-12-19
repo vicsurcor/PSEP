@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MsgLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecb291f8c6f2831589532083a7091289d9d4909d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eb7fad9284a72ff42ff73bf88d0e9b9c0c53f0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MsgLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MsgLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

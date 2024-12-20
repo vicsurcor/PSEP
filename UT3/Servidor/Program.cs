@@ -58,7 +58,7 @@ namespace SyncServer
                         }
 
                         // Show the data on the console.  
-                        Console.WriteLine("Text received : {0}", data);
+                        Console.WriteLine("Text received from {0} : {1}", handler.RemoteEndPoint, data);
                         // If the data is a disconnect request
                         if (data == "Exit") {
                             break;

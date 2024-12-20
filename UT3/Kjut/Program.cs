@@ -30,3 +30,25 @@ if (num < 0 || num > 2) {
 
 //3. Modify the synchronous server code to display statistics with the number of zeros, ones and twos received each time a value is received.
 
+                        int.TryParse(data, out int num);
+                        if (num == 0) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+                        else if (num == 1) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+                        else if (num == 2) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+
+                        Console.WriteLine("List data:  [0]: {0} [1]: {1} [2]: {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
+                        

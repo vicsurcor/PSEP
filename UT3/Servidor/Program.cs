@@ -77,7 +77,9 @@ namespace SyncServer
                             }
                             list[num]++;
                         }
+
                         Console.WriteLine("List data:  [0]: {0} [1]: {1} [2]: {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
+                        
                         // Show the data on the console.  
                         // Console.WriteLine("Text received: {0}", data)
                         Console.WriteLine("Text received from {0} : {1}", handler.RemoteEndPoint, data);

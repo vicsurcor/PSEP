@@ -13,6 +13,7 @@ namespace SyncServer
 
         // Incoming data from the client.  
         public static string data = null;
+        public static Dictionary<int, int> list = new Dictionary<int, int>();
 
         public static void StartListening()
         {
@@ -57,10 +58,37 @@ namespace SyncServer
                             data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
                         }
 
+                        int.TryParse(data, out int num);
+                        if (num == 0) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+                        else if (num == 1) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+                        else if (num == 2) {
+                            if (!list.ContainsKey(num)) {
+                                list.Add(num, 0);
+                            }
+                            list[num]++;
+                        }
+
+                        Console.WriteLine("List data:  [0]: {0} [1]: {1} [2]: {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
+                        
                         // Show the data on the console.  
-                        Console.WriteLine("Text received : {0}", data);
+                        // Console.WriteLine("Text received: {0}", data)
+                        Console.WriteLine("Text received from {0} : {1}", handler.RemoteEndPoint, data);
                         // If the data is a disconnect request
-                        if (data == "Exit") {
+                        // if (data == "Exit") {
+                        //     break;
+                        // }
+                        
+                        if (num < 0 || num > 2) {
                             break;
                         }
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Servidor\\Servidor.csproj": {}
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Kjut\\Kjut.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Servidor\\Servidor.csproj": {
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Kjut\\Kjut.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Servidor\\Servidor.csproj",
-        "projectName": "Servidor",
-        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Servidor\\Servidor.csproj",
+        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Kjut\\Kjut.csproj",
+        "projectName": "Kjut",
+        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Kjut\\Kjut.csproj",
         "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Servidor\\obj\\",
+        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\Kjut\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -32,28 +32,35 @@ namespace clientesincrono {
                     byte[] msg = null;
                     int bytesRec = 0;
                     int bytesSent = 0;
+                    string data = null;
                     while (true) {
+                        Console.WriteLine(sender.Connected);
+                        Console.WriteLine("Enter integer [0,1,2]");
                         // Encode the data string into a byte array.  
                         msg = Encoding.ASCII.GetBytes(Console.ReadLine());
-
+                        Console.WriteLine(msg);
+                        
                         // Send the data through the socket.  
                         bytesSent = sender.Send(msg);
 
                         // Receive the response from the remote device.  
                         bytesRec = sender.Receive(bytes);
-                        // If the response is a disconnect confirmation
-                        if (Encoding.ASCII.GetString(bytes, 0, bytesRec) == "Solicitud de desconexion") {
+
+                        data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        int.TryParse(data, out int num);
+                        if (num < 0 || num > 2) {
+                            Console.WriteLine("Desconectando");
+                            sender.Shutdown(SocketShutdown.Both);
+                            sender.Close();
                             break;
                         }
+                        
+                        // If the response is a disconnect confirmation
+                        // if (Encoding.ASCII.GetString(bytes, 0, bytesRec) == "Solicitud de desconexion") {
+                        //     break;
+                        // }
                         Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
                     }
-                    Console.WriteLine("Desconectando");
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
-                    
-                    
-                    
-
                 } catch (ArgumentNullException ane) {
                     Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
                 } catch (SocketException se) {

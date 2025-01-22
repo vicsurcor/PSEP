@@ -38,7 +38,6 @@ namespace clientesincrono {
                         Console.WriteLine("Enter integer [0,1,2]");
                         // Encode the data string into a byte array.  
                         msg = Encoding.ASCII.GetBytes(Console.ReadLine());
-                        Console.WriteLine(msg);
                         
                         // Send the data through the socket.  
                         bytesSent = sender.Send(msg);
@@ -56,9 +55,9 @@ namespace clientesincrono {
                         }
                         
                         // If the response is a disconnect confirmation
-                        // if (Encoding.ASCII.GetString(bytes, 0, bytesRec) == "Solicitud de desconexion") {
-                        //     break;
-                        // }
+                        if (Encoding.ASCII.GetString(bytes, 0, bytesRec) == "Solicitud de desconexion") {
+                            break;
+                        }
                         Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
                     }
                 } catch (ArgumentNullException ane) {

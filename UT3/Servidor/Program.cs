@@ -13,7 +13,7 @@ namespace SyncServer
 
         // Incoming data from the client.  
         public static string data = null;
-        public static Dictionary<int, int> list = new Dictionary<int, int>();
+        public static SortedDictionary<int, int> list;
 
         public static void StartListening()
         {
@@ -45,6 +45,7 @@ namespace SyncServer
                     Console.WriteLine("Waiting for a connection...");
                     // Program is suspended while waiting for an incoming connection.  
                     Socket handler = listener.Accept();
+                    list = new SortedDictionary<int, int>();
                     data = null;
                     int bytesRec = 0;
                     byte[] msg = null;
@@ -78,7 +79,7 @@ namespace SyncServer
                             list[num]++;
                         }
 
-                        Console.WriteLine("List data:  [0]: {0} [1]: {1} [2]: {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
+                        Console.WriteLine("List data: ([value, quantity])  {0}  {1}  {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
                         
                         // Show the data on the console.  
                         // Console.WriteLine("Text received: {0}", data)

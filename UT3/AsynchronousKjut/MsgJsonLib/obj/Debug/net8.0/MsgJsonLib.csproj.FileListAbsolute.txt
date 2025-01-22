@@ -1,0 +1,15 @@
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.AssemblyInfoInputs.cache
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.AssemblyInfo.cs
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.csproj.CoreCompileInputs.cache
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.sourcelink.json
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\bin\Debug\net8.0\MsgJsonLib.exe
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\bin\Debug\net8.0\MsgJsonLib.deps.json
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\bin\Debug\net8.0\MsgJsonLib.runtimeconfig.json
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\bin\Debug\net8.0\MsgJsonLib.dll
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\bin\Debug\net8.0\MsgJsonLib.pdb
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.dll
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\refint\MsgJsonLib.dll
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.pdb
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\MsgJsonLib.genruntimeconfig.cache
+C:\Users\vdsur\Desktop\PSEP\UT3\AsynchronousKjut\MsgJsonLib\obj\Debug\net8.0\ref\MsgJsonLib.dll

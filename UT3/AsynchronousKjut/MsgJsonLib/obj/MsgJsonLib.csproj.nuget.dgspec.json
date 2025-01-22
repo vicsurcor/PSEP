@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\5\\5.csproj": {}
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\5\\5.csproj": {
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\5\\5.csproj",
-        "projectName": "5",
-        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\5\\5.csproj",
+        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj",
+        "projectName": "MsgJsonLib",
+        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj",
         "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\5\\obj\\",
+        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"

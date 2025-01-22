@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "5/1.0.0": {
+      "MsgJsonLib/1.0.0": {
         "runtime": {
-          "5.dll": {}
+          "MsgJsonLib.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "5/1.0.0": {
+    "MsgJsonLib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

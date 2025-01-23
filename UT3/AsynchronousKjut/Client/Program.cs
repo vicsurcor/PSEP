@@ -15,6 +15,7 @@ namespace AsyncCli
     {
         // Client socket.  
         public Socket workSocket = null;
+        byte[] bytes = new byte[1024];
         // Size of receive buffer.  
         public const int BufferSize = 10; // 1024;
         // Receive buffer.  
@@ -62,24 +63,52 @@ namespace AsyncCli
 
                 // Send test data to the remote device.  
                 //TODO Modify this for the Kjut count 
-                string sms = "This is my first serialized message";
-                string resumen = "777777";
-                Message Message = new Message(sms);
-                Send(client, Message);
-                sendDone.WaitOne();
+                byte[] msg = null;
+                string data = null;
+                while (true) {
+                    Console.WriteLine(sender.Connected);
+                    Console.WriteLine("Enter integer [0,1,2]");
+                    // Encode the data string into a byte array.  
+                    msg = Encoding.ASCII.GetBytes(Console.ReadLine());
+                        
+                    // Send the data through the socket.  
+                    Send(client, msg);
+                    sendDone.WaitOne();
+
+                    // Receive the response from the remote device.  
+                    Receive(client);
+                    receiveDone.WaitOne();
+
+                    data = Encoding.ASCII.GetString(bytes, 0, response);
+                    int.TryParse(data, out int num);
+                    if (num < 0 || num > 2) {
+                        Console.WriteLine("Desconectando");
+                        // Release the socket.  
+                        client.Shutdown(SocketShutdown.Both);
+                        Console.WriteLine(client.Connected);
+                        client.Close();
+                        break;
+                    }
+                        
+                    // If the response is a disconnect confirmation
+                    if (Encoding.ASCII.GetString(bytes, 0, response) == "Solicitud de desconexion") {
+                        break;
+                    }
+                    Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, response));
+                }
+                //Message Message = new Message(sms);
+                //Send(client, Message);
+                //sendDone.WaitOne();
 
                 // Receive the response from the remote device.  
-                Receive(client);
-                receiveDone.WaitOne();
+                //Receive(client);
+                //receiveDone.WaitOne();
 
                 // Write the response to the console.  
                 Console.WriteLine("Response received:\n{0}", response);
                 Console.WriteLine(client.Connected);
                 Console.ReadLine();
-                // Release the socket.  
-                client.Shutdown(SocketShutdown.Both);
-                Console.WriteLine(client.Connected);
-                client.Close();
+                
 
             }
             catch (Exception e)

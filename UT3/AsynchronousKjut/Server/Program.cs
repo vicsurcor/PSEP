@@ -120,6 +120,7 @@ namespace AsyncSrv
                 }
                 if (state.sb.Length > 1)
                 {
+                    //TODO Modify this to fit the Kjut count 
                     Console.WriteLine("2"); // Trace
                     Console.WriteLine(state.sb.ToString());
 

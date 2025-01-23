@@ -61,6 +61,7 @@ namespace AsyncCli
                 connectDone.WaitOne(); //Blocks the current thread until the current WaitHandle receives a signal.
 
                 // Send test data to the remote device.  
+                //TODO Modify this for the Kjut count 
                 string sms = "This is my first serialized message";
                 string resumen = "777777";
                 Message Message = new Message(sms);

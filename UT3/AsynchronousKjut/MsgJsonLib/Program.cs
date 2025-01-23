@@ -44,6 +44,8 @@ namespace MsgJsonLib
             // Console.ReadLine();
         }
 
+        //TODO: Create methods for singular messages
+
         public static void SerializeItem(string fileName, string txt)
         //public static async Task SerializeItemAsync(string fileName)
         {

@@ -32,7 +32,7 @@ namespace MsgJsonLib
         }
     }
 
-    public static class JsonSerializer
+    public static class JsonMsgSerializer
     {
         static void Main()
         {
@@ -46,16 +46,14 @@ namespace MsgJsonLib
 
         //TODO: Create methods for singular messages
 
-        public static void SerializeItem(string fileName, string txt)
+        public static void SerializeList(string fileName, string txt)
         //public static async Task SerializeItemAsync(string fileName)
         {
-            string filePath = "messages.json";
-
             // Read existing messages from the file
             List<Message> messages = new List<Message>();
-            if (File.Exists(filePath))
+            if (File.Exists(fileName))
             {
-                string existingJson = File.ReadAllText(filePath);
+                string existingJson = File.ReadAllText(fileName);
                 messages = JsonSerializer.Deserialize<List<Message>>(existingJson);
             }
 
@@ -71,7 +69,7 @@ namespace MsgJsonLib
 
             // Serialize the list back to the JSON file
             string newJson = JsonSerializer.Serialize(messages, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, newJson);
+            File.WriteAllText(fileName, newJson);
 
             Console.WriteLine("Message saved successfully!");
             // using (FileStream fs = File.Create(fileName))
@@ -79,8 +77,35 @@ namespace MsgJsonLib
             //     await JsonSerializer.SerializeAsync(fs, weatherForecast);
             // }
         }
+        public static void SerializeItem(string fileName, string txt)
+        //public static async Task SerializeItemAsync(string fileName)
+        {
+            // Create an instance of message and serialize it.
+            Message m = new Message(txt);
 
-        public static void DeserializeItem(string fileName, string txt)
+            string jsonString = JsonSerializer.Serialize(m);
+
+            //write string to file
+            File.WriteAllText(fileName, jsonString);
+            // using (FileStream fs = File.Create(fileName))
+            // {
+            //     await JsonSerializer.SerializeAsync(fs, weatherForecast);
+            // }
+        }
+        public static void DeserializeItem(string fileName)
+        // public static async Task DeserializeItemAsync(string fileName)
+        {
+            Message m;
+            string jsonString = File.ReadAllText(fileName);
+            m = JsonSerializer.Deserialize<Message>(jsonString);
+            // using (FileStream fs = File.OpenRead(fileName))
+            // {
+            //     m = await JsonSerializer.DeserializeAsync<Message>(fs);
+            // }
+            Console.WriteLine(m.Txt);
+        }
+
+        public static void DeserializeList(string fileName)
         // public static async Task DeserializeItemAsync(string fileName)
         {
             List<Message> messages;

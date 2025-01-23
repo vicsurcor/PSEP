@@ -15,7 +15,7 @@ namespace AsyncCli
     {
         // Client socket.  
         public Socket workSocket = null;
-        byte[] bytes = new byte[1024];
+        
         // Size of receive buffer.  
         public const int BufferSize = 10; // 1024;
         // Receive buffer.  
@@ -45,6 +45,7 @@ namespace AsyncCli
 
         private static void StartClient()
         {
+            byte[] bytes = new byte[1024];
             // Connect to a remote device.  
             try
             {
@@ -66,10 +67,11 @@ namespace AsyncCli
                 byte[] msg = null;
                 string data = null;
                 while (true) {
-                    Console.WriteLine(sender.Connected);
+                    Console.WriteLine(client.Connected);
                     Console.WriteLine("Enter integer [0,1,2]");
                     // Encode the data string into a byte array.  
                     msg = Encoding.ASCII.GetBytes(Console.ReadLine());
+                    Console.WriteLine(msg);
                         
                     // Send the data through the socket.  
                     Send(client, msg);
@@ -79,8 +81,8 @@ namespace AsyncCli
                     Receive(client);
                     receiveDone.WaitOne();
 
-                    data = Encoding.ASCII.GetString(bytes, 0, response);
-                    int.TryParse(data, out int num);
+                    
+                    int.TryParse(response, out int num);
                     if (num < 0 || num > 2) {
                         Console.WriteLine("Desconectando");
                         // Release the socket.  
@@ -91,10 +93,10 @@ namespace AsyncCli
                     }
                         
                     // If the response is a disconnect confirmation
-                    if (Encoding.ASCII.GetString(bytes, 0, response) == "Solicitud de desconexion") {
+                    if (Encoding.ASCII.GetString(bytes, 0, num) == "Solicitud de desconexion") {
                         break;
                     }
-                    Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, response));
+                    Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, num));
                 }
                 //Message Message = new Message(sms);
                 //Send(client, Message);
@@ -164,15 +166,18 @@ namespace AsyncCli
             }
         }
 
-        private static void Send(Socket handler, Message data)
+        private static void Send(Socket handler, byte[] data)
         {
             // Convert the message
-            XmlSerializer serializer = new XmlSerializer(typeof(Message));
-            Stream stream = new MemoryStream();
-            serializer.Serialize(stream, data);
-            byte[] byteData = ((MemoryStream)stream).ToArray();
-            // Begin sending the data to the remote device.  
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
+            // XmlSerializer serializer = new XmlSerializer(typeof(Message));
+            // Stream stream = new MemoryStream();
+            // serializer.Serialize(stream, data);
+            // byte[] byteData = ((MemoryStream)stream).ToArray();
+            // // Begin sending the data to the remote device.  
+            // handler.BeginSend(byteData, 0, byteData.Length, 0,
+            //                     new AsyncCallback(SendCallback), handler);
+
+            handler.BeginSend(data, 0, data.Length, 0,
                                 new AsyncCallback(SendCallback), handler);
         }
 
@@ -240,14 +245,14 @@ namespace AsyncCli
                 else
                 {
                     // All the data has arrived; put it in response.  
-                    if (state.sb.Length > 1)
+                    if (state.sb.Length >= 1)
                     {
                         Console.WriteLine("2"); // Trace
                         //Deserializacion del objeto
                         response = state.sb.ToString();
-                        byte[] byteArray = Encoding.ASCII.GetBytes(response);
-                        MemoryStream stream = new MemoryStream(byteArray);
-                        Message recibido = (Message)new XmlSerializer(typeof(Message)).Deserialize(stream);
+                        // byte[] byteArray = Encoding.ASCII.GetBytes(response);
+                        // MemoryStream stream = new MemoryStream(byteArray);
+                        // Message recibido = (Message)new XmlSerializer(typeof(Message)).Deserialize(stream);
 
                     }
                     else

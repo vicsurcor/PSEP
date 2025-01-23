@@ -13,18 +13,26 @@ namespace AsyncSrv
     // State object for reading client data asynchronously  
     public class StateObject
     {
+        
         // Client  socket.  
         public Socket workSocket = null;
         // Size of receive buffer.   !!!!
         public const int BufferSize = 10; // 1024;
+        
         // Receive buffer.  
         public byte[] buffer = new byte[BufferSize];
         // Received data string.  
         public StringBuilder sb = new StringBuilder();
+        
     }
 
     public class AsynchronousSocketListener
     {
+
+        public static string data = null;
+        public static SortedDictionary<int, int> list;
+        public static int TAM = 1024;
+        
         private static int PORT = 11000;
 
         // Thread signal.  
@@ -38,6 +46,8 @@ namespace AsyncSrv
 
         public static void StartListening()
         {
+
+            
             // Establish the local endpoint for the socket.  
             IPAddress ipAddress = GetLocalIpAddress();
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, PORT);
@@ -93,6 +103,8 @@ namespace AsyncSrv
 
         public static void ReadCallback(IAsyncResult ar)
         {
+
+            byte[] bytes = new Byte[TAM];
             Console.Write("_"); // Trace
             // Retrieve the state object and the handler socket  
             // from the asynchronous state object.  
@@ -118,21 +130,66 @@ namespace AsyncSrv
                     Console.Write("1"); // Trace
                     state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
                 }
-                if (state.sb.Length > 1)
+                if (state.sb.Length >= 1)
                 {
-                    //TODO Modify this to fit the Kjut count 
-                    Console.WriteLine("2"); // Trace
+                    Console.Write("2");
                     Console.WriteLine(state.sb.ToString());
+                    while (true)
+                    {
+                    
+                        // Program is suspended while waiting for an incoming connection.  
+                        list = new SortedDictionary<int, int>();
+                        data = null;
+                        byte[] msg = null;
+                        while (true){
 
-                    byte[] byteArray = Encoding.ASCII.GetBytes(state.sb.ToString());
-                    MemoryStream stream = new MemoryStream(byteArray);
-                    Message recibido = (Message)new JsonSerializer().DeserializeItem("mensajes.json",stream);
+                            data = state.sb.ToString();
+                
+                            int.TryParse(data, out int num);
+                            if (num == 0) {
+                                if (!list.ContainsKey(num)) {
+                                    list.Add(num, 0);
+                                }
+                                list[num]++;
+                            }
+                            else if (num == 1) {
+                                if (!list.ContainsKey(num)) {
+                                    list.Add(num, 0);
+                                }
+                                list[num]++;
+                            }
+                            else if (num == 2) {
+                                if (!list.ContainsKey(num)) {
+                                    list.Add(num, 0);
+                                }
+                                list[num]++;
+                            }
 
-                    // All the data has been read from the client. Display it on the console.  
-                    Console.WriteLine("Read {0} bytes from socket.",
-                        byteArray.Length);
-                    // Echo the data back to the client.  
-                    Send(handler);
+                            Console.WriteLine("List data: ([value, quantity])  {0}  {1}  {2}", list.ElementAtOrDefault(0), list.ElementAtOrDefault(1), list.ElementAtOrDefault(2));
+                            
+                            // Show the data on the console.  
+                            // Console.WriteLine("Text received: {0}", data)
+                            Console.WriteLine("Text received from {0} : {1}", handler.RemoteEndPoint, data);
+                            // If the data is a disconnect request
+                            // if (data == "Exit") {
+                            //     break;
+                            // }
+                            
+                            if (num < 0 || num > 2) {
+                                break;
+                            }
+
+                            // Echo the data back to the client.  
+                            msg = Encoding.ASCII.GetBytes(data);
+                            Send(handler, msg);
+                        }
+                        // Sends disconnect confirmation
+                        msg = Encoding.ASCII.GetBytes("Solicitud de desconexion");
+                        Send(handler, msg);
+                        handler.Shutdown(SocketShutdown.Both);
+                        handler.Close();
+
+                    }
                 }
                 else
                 {
@@ -143,16 +200,19 @@ namespace AsyncSrv
 
         }
 
-        private static void Send(Socket handler, Message data)
+        private static void Send(Socket handler, byte[] data)
         {
-            // Convert the message
-            XmlSerializer serializer = new XmlSerializer(typeof(Message));
-            Stream stream = new MemoryStream();
-            serializer.Serialize(stream, data);
-            byte[] byteData = ((MemoryStream)stream).ToArray();
-            // Begin sending the data to the remote device.  
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
-            new AsyncCallback(SendCallback), handler);
+            // // Convert the message
+            // XmlSerializer serializer = new XmlSerializer(typeof(Message));
+            // Stream stream = new MemoryStream();
+            // serializer.Serialize(stream, data);
+            // byte[] byteData = ((MemoryStream)stream).ToArray();
+            // // Begin sending the data to the remote device.  
+            // handler.BeginSend(byteData, 0, byteData.Length, 0,
+            // new AsyncCallback(SendCallback), handler);
+            handler.BeginSend(data, 0, data.Length, 0,
+                                 new AsyncCallback(SendCallback), handler);
+
         }
 
         private static void SendCallback(IAsyncResult ar)
@@ -166,9 +226,9 @@ namespace AsyncSrv
                 int bytesSent = handler.EndSend(ar);
                 Console.WriteLine("Sent {0} bytes to client.", bytesSent);
                 Console.WriteLine(handler.Connected);
-                handler.Shutdown(SocketShutdown.Both);
-                Console.WriteLine(handler.Connected);
-                handler.Close();
+                // handler.Shutdown(SocketShutdown.Both);
+                // Console.WriteLine(handler.Connected);
+                // handler.Close();
             }
             catch (Exception e)
             {

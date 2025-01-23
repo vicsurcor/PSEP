@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj": {}
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj": {
+    "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj",
+        "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj",
         "projectName": "MsgLib",
-        "projectPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj",
-        "packagesPath": "C:\\Users\\AlumTA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\obj\\",
+        "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\MsgLib.csproj",
+        "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\asynccli\\MsgLib\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\AlumTA\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

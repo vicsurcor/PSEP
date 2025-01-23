@@ -32,16 +32,16 @@ namespace MsgJsonLib
         }
     }
 
-    public static class Program
+    public static class JsonSerializer
     {
         static void Main()
         {
-            string fileName = "messages.json";
+            // string fileName = "messages.json";
 
-            Program.SerializeItem(fileName); // Serialize an instance of Message.
-            Program.DeserializeItem(fileName); // Deserialize the instance.
-            Console.WriteLine("Done");
-            Console.ReadLine();
+            // Program.SerializeItem(fileName); // Serialize an instance of Message.
+            // Program.DeserializeItem(fileName); // Deserialize the instance.
+            // Console.WriteLine("Done");
+            // Console.ReadLine();
         }
 
         public static void SerializeItem(string fileName, string txt)
@@ -78,7 +78,7 @@ namespace MsgJsonLib
             // }
         }
 
-        public static void DeserializeItem(string fileName)
+        public static void DeserializeItem(string fileName, string txt)
         // public static async Task DeserializeItemAsync(string fileName)
         {
             List<Message> messages;

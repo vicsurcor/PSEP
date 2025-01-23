@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "MsgJsonLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MsgJsonLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MsgJsonLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MsgJsonLib/1.0.0": {
+      "type": "project",
+      "path": "../MsgJsonLib/MsgJsonLib.csproj",
+      "msbuildProject": "../MsgJsonLib/MsgJsonLib.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "MsgJsonLib >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\vdsur\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\Client\\Client.csproj",
+      "projectName": "Client",
+      "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\Client\\Client.csproj",
+      "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\Client\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj": {
+              "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\UT3\\AsynchronousKjut\\MsgJsonLib\\MsgJsonLib.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

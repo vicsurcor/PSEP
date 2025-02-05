@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 public class GameController : ControllerBase
 {
     private readonly GameService _gameService;
+    private static int _nextGameId;
 
     public GameController(GameService gameService)
     {
@@ -20,7 +21,7 @@ public class GameController : ControllerBase
     {
         if (game == null)
             return BadRequest("Invalid game data.");
-
+        game.Id = _gameService.GetNextGameId();
         await Task.Run(() => _gameService.Games.Add(game)); // Simulate async work
         return Ok(new { message = "Game added successfully!", game });
     }
@@ -31,7 +32,12 @@ public class GameController : ControllerBase
     {
         if (newGames == null || newGames.Count == 0)
             return BadRequest("Invalid game list.");
+        foreach (var game in newGames)
+        {
+            // Assign a unique Game ID
+            game.Id = _gameService.GetNextGameId();
 
+        }
         await Task.Run(() => _gameService.Games.AddRange(newGames)); // Simulate async work
         return Ok(new { message = "Games added successfully!", games = _gameService.Games });
     }

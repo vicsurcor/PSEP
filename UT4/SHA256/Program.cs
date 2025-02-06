@@ -11,15 +11,15 @@ namespace resumen
         public static void Main()
         {
             string source = "Hello World!";
-            using (SHA256 sha256Hash = SHA256.Create())
+            using (MD5 MD5 = MD5.Create())
             {
-                string hash = GetHash(sha256Hash, source);
+                string hash = GetHash(MD5, source);
 
                 Console.WriteLine($"The SHA256 hash of {source} is: {hash}.");
 
                 Console.WriteLine("Verifying the hash...");
 
-                if (VerifyHash(sha256Hash, source, hash))
+                if (VerifyHash(MD5, source, hash))
                 {
                     Console.WriteLine("The hashes are the same.");
                 }
@@ -46,6 +46,7 @@ namespace resumen
             // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {
+                Console.WriteLine(data.Length * 2);
                 sBuilder.Append(data[i].ToString("x2"));
             }
 

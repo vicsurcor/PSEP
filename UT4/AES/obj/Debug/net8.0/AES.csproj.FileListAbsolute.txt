@@ -1,0 +1,15 @@
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\bin\Debug\net8.0\AES.exe
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\bin\Debug\net8.0\AES.deps.json
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\bin\Debug\net8.0\AES.runtimeconfig.json
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\bin\Debug\net8.0\AES.dll
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\bin\Debug\net8.0\AES.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.sourcelink.json
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.dll
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\refint\AES.dll
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.pdb
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\AES.genruntimeconfig.cache
+C:\Users\AlumTA\Desktop\PSEP\UT4\AES\obj\Debug\net8.0\ref\AES.dll

@@ -1,0 +1,6 @@
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.csproj.AssemblyReference.cache
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.AssemblyInfoInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.AssemblyInfo.cs
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.csproj.CoreCompileInputs.cache
+C:\Users\AlumTA\Desktop\PSEP\UT5\PDF-Sign\obj\Debug\net8.0\PDF-Sign.sourcelink.json

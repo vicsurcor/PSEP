@@ -26,6 +26,18 @@ namespace simetrico
                 Console.WriteLine("Original:   {0}", original);
                 System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(encrypted));
                 System.Console.WriteLine(Convert.ToBase64String(encrypted,0,encrypted.Length));
+                Console.WriteLine(myAes.Key.Length);
+                foreach (Object i in myAes.Key)
+                {
+                    Console.Write("{0}", i);
+                }
+                Console.WriteLine();
+                Console.WriteLine(myAes.IV.Length);
+                foreach (Object i in myAes.IV)
+                {
+                    Console.Write("{0}", i);
+                }
+                Console.WriteLine();
                 Console.WriteLine("Round Trip: {0}", roundtrip);
             }
         }

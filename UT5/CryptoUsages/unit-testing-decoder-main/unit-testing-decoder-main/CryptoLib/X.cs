@@ -95,7 +95,13 @@ namespace CryptoLib
 
         public static string ShaHash(Object input)
         {
-            return null;
+            using (SHA512 SHA512 = SHA512.Create())
+            {
+                string hash = GetHash(SHA512, input);
+
+                return hash;
+            }
+            
         }
 
         public static string RandomString(int length)
@@ -115,12 +121,37 @@ namespace CryptoLib
             }
             return res.ToString();
         }
+        private static string GetHash(HashAlgorithm hashAlgorithm, Object input)
+        {
+
+            // Convert the input string to a byte array and compute the hash.
+            // Se puede convertir un objeto que haya sido serializado de la misma forma a partir 
+            // de los bytes que se van a enviar por el socket
+            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes((String)input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            var sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }   
 
     }
+    
 
     public class Utf8StringWriter : StringWriter
     {
         public override Encoding Encoding => Encoding.UTF8;
 
     }
+
+    
 }

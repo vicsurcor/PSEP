@@ -28,7 +28,7 @@ public class UserService
     {
         if (Users.Any())
         {
-            _nextUserId = Users.Max(g => g.Id) + 1; // Start after the highest User ID
+            _nextUserId = Users.Max(u => u.Id) + 1; // Start after the highest User ID
         }
         else
         {

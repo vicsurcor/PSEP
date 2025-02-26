@@ -35,7 +35,7 @@ public class UserService
             _nextUserId = 1;
         }
     }
-    // Method to get the next Game ID
+    // Method to get the next User ID
     public int GetNextUserId()
     {
         return _nextUserId++;

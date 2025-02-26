@@ -40,4 +40,6 @@ public class UserService
     {
         return _nextUserId++;
     }
+
+    // TODO: Encryption and Hashing Methods
 }

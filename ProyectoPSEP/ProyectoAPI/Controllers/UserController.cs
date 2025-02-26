@@ -20,7 +20,7 @@ public class UserController : ControllerBase
         if (user == null)
             return BadRequest("Invalid user data");
         user.id = _userService.GetNextUserId();
-        // TODO: Email encryption and Password Hash 
+        // TODO: Add Email Encryption and Password Hash 
         await Task.Run(() => _userService.Users.Add(user)); // Simulate async work
         return Ok(new { message = "User added successfully!", user });
     }

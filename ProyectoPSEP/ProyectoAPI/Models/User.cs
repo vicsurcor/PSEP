@@ -5,4 +5,5 @@ public class User
     public string Email { get; set; } // Email del Usuario
     public string Password { get; set; } // Contrasena 
     public Role role{ get; set; } // Rol del Usuario
+    
 }

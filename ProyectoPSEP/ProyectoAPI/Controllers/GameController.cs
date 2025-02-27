@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class GameController : ControllerBase
@@ -18,7 +18,7 @@ public class GameController : ControllerBase
 
     // POST: Add a single game
     [HttpPost("add")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> AddGame([FromBody] Game game)
     {
         if (game == null)
@@ -30,7 +30,7 @@ public class GameController : ControllerBase
 
     // POST: Add multiple games
     [HttpPost("add-multiple")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> AddGames([FromBody] List<Game> newGames)
     {
         if (newGames == null || newGames.Count == 0)
@@ -47,7 +47,7 @@ public class GameController : ControllerBase
 
     // GET: Retrieve a single game by ID
     [HttpGet("{id}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetGame(int id)
     {
         var game = await Task.Run(() => _gameService.Games.FirstOrDefault(g => g.Id == id)); // Simulate async work
@@ -66,7 +66,7 @@ public class GameController : ControllerBase
 
     // PUT: Update a game by ID
     [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateGame(int id, [FromBody] Game updatedGame)
     {
         if (updatedGame == null)
@@ -86,7 +86,7 @@ public class GameController : ControllerBase
 
     // PUT: Update multiple games
     [HttpPut("update-multiple")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateMultipleGames([FromBody] List<Game> updatedGames)
     {
         if (updatedGames == null || updatedGames.Count == 0)
@@ -112,7 +112,7 @@ public class GameController : ControllerBase
 
     // DELETE: Delete a game by ID
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteGame(int id)
     {
         var game = await Task.Run(() => _gameService.Games.FirstOrDefault(g => g.Id == id)); // Simulate async work
@@ -125,7 +125,7 @@ public class GameController : ControllerBase
 
     // DELETE: Delete multiple games by IDs
     [HttpDelete("delete-multiple")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteMultipleGames([FromBody] List<int> gameIds)
     {
         if (gameIds == null || gameIds.Count == 0)
@@ -147,8 +147,8 @@ public class GameController : ControllerBase
     }
     
     // PUT: Buy a game by ID
-    [HttpPut("{id}")]
-    [Authorize(Roles = "Client")]
+    [HttpPut("/buy/{id}")]
+    //[Authorize(Roles = "Client")]
     public async Task<IActionResult> BuyGame(int id) {
         var game = await Task.Run(() => _gameService.Games.FirstOrDefault(g => g.Id == id)); // Simulate async work
         if (game == null)

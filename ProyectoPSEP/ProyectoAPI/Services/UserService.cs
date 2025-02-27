@@ -6,7 +6,7 @@ public class UserService
 {
     public string path = "Datasets/";
     public List<User> Users { get; private set; } = new List<User>();
-    private int _nextGameId;
+    private int _nextUserId;
 
     public UserService()
     {

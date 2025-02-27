@@ -6755,24 +6755,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vdsur\\.nuget\\packages\\": {}
+    "C:\\Users\\AlumTA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vdsur\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\ProyectoAPI.csproj",
+      "projectUniqueName": "C:\\Users\\AlumTA\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\ProyectoAPI.csproj",
       "projectName": "ProyectoAPI",
-      "projectPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\ProyectoAPI.csproj",
-      "packagesPath": "C:\\Users\\vdsur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vdsur\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\obj\\",
+      "projectPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\ProyectoAPI.csproj",
+      "packagesPath": "C:\\Users\\AlumTA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\ProyectoPSEP\\ProyectoAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\vdsur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\AlumTA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

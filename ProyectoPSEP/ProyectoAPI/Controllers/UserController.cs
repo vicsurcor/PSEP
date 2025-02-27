@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
+//[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
@@ -9,7 +9,7 @@ public class UserController : ControllerBase
     private readonly UserService _userService;
     private static int _nextUserId;
 
-    public GameController(UserService userService)
+    public UserController(UserService userService)
     {
         _userService = userService;
     }
@@ -19,7 +19,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Register([FromBody] User user){
         if (user == null)
             return BadRequest("Invalid user data");
-        user.id = _userService.GetNextUserId();
+        user.Id = _userService.GetNextUserId();
         // TODO: Add Email Encryption and Password Hash 
         await Task.Run(() => _userService.Users.Add(user)); // Simulate async work
         return Ok(new { message = "User added successfully!", user });
@@ -56,14 +56,14 @@ public class UserController : ControllerBase
     }
 
     // PUT: Updates a users role
-    [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
+    [HttpPut("/role/{id}")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateUserRole(int id, [FromBody] User updatedUser)
     {
         if (updatedUser == null)
             return BadRequest("Invalid user data.");
 
-        var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
+        var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.Id == id)); // Simulate async work
         if (user == null)
             return NotFound("User not found.");
 

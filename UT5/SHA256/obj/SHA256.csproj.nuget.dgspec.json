@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT4\\SHA256\\SHA256.csproj": {}
+    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT5\\SHA256\\SHA256.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT4\\SHA256\\SHA256.csproj": {
+    "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT5\\SHA256\\SHA256.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT4\\SHA256\\SHA256.csproj",
+        "projectUniqueName": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT5\\SHA256\\SHA256.csproj",
         "projectName": "SHA256",
-        "projectPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT4\\SHA256\\SHA256.csproj",
+        "projectPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT5\\SHA256\\SHA256.csproj",
         "packagesPath": "C:\\Users\\AlumTA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT4\\SHA256\\obj\\",
+        "outputPath": "C:\\Users\\AlumTA\\Desktop\\PSEP\\UT5\\SHA256\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

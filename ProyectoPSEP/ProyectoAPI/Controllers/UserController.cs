@@ -20,22 +20,33 @@ public class UserController : ControllerBase
         if (user == null)
             return BadRequest("Invalid user data");
         user.Id = _userService.GetNextUserId();
-        // TODO: Add Email Encryption and Password Hash 
+        user.Password =  _userService.HashPassword(user.Password);
+        
+        // TODO: Add Email Encryption
         await Task.Run(() => _userService.Users.Add(user)); // Simulate async work
         return Ok(new { message = "User added successfully!", user });
     }
 
     // TODO: VerifyUser AKA Login
 
-    // GET: Retrieve a single user by username
-    [HttpGet("{username}")]
-    public async Task<IActionResult> GetUser(string username)
-    {
-        var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
-        if (user == null)
+    // POST: Verifies the user and shows their info 
+    [HttpPost]
+    public async Task<IActionResult> Login([FromBody] User user){
+        var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == user.UserName)); // Simulate async work
+        if (userSaved == null)
             return NotFound("User not found.");
+        if (_userService.VerifyPassword(user.Password, userSaved.Password) == false)
+            return BadRequest("Passwords don't match");
+            
+        return Ok(new { message = "User verified successfully!", user });
+    }
 
-        return Ok(user);
+    // GET: Retrieve all users
+    [HttpGet("get")]
+    //[Authorize(Role = "Admin")]
+    public async Task<IActionResult> GetUsers()
+    {
+        return Ok(await Task.Run(() => _userService.Users)); // Simulate async work
     }
 
     // PUT: Updates a single user by username
@@ -50,7 +61,7 @@ public class UserController : ControllerBase
             return NotFound("User not found.");
 
         user.UserName = updatedUser.UserName;
-        user.Password = updatedUser.Password;
+        user.Password = _userService.HashPassword(updatedUser.Password);
 
         return Ok(new { message = "User updated successfully!", user });
     }
@@ -75,14 +86,29 @@ public class UserController : ControllerBase
     }
 
     // DELETE: Deletes a single user
-    [HttpDelete("{username}")]
-    public async Task<IActionResult> DeleteUser(string username)
+    [HttpDelete("/delete/admin")]
+    //[Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteUserAdmin(string username)
     {
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
         if (user == null)
             return NotFound("User not found.");
 
         await Task.Run(() => _userService.Users.Remove(user)); // Simulate async work
+        return Ok(new { message = "User deleted successfully!" });
+    }
+
+    // DELETE: Deletes a single user
+    [HttpDelete("/delete/client")]
+    //[Authorize(Roles = "Client")]
+    public async Task<IActionResult> DeleteUserClient(string username, [FromBody] User user)
+    {
+        var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == user.UserName)); // Simulate async work
+        if (userSaved == null)
+            return NotFound("User not found.");
+        if (_userService.VerifyPassword(user.Password, userSaved.Password) == false)
+            return BadRequest("Passwords don't match");
+        await Task.Run(() => _userService.Users.Remove(userSaved)); // Simulate async work
         return Ok(new { message = "User deleted successfully!" });
     }
 }

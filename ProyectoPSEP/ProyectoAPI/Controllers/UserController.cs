@@ -58,16 +58,18 @@ public class UserController : ControllerBase
     // PUT: Updates a users role
     [HttpPut("/role/{id}")]
     //[Authorize(Roles = "Admin")]
-    public async Task<IActionResult> UpdateUserRole(int id, [FromBody] User updatedUser)
+    public async Task<IActionResult> UpdateUserRole(int id)
     {
-        if (updatedUser == null)
-            return BadRequest("Invalid user data.");
-
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.Id == id)); // Simulate async work
         if (user == null)
             return NotFound("User not found.");
 
-        user.Role = updatedUser.Role;
+        if (user.Role == "Admin") {
+            user.Role = "Client";
+        }
+        else {
+            user.Role = "Admin";
+        }
 
         return Ok(new { message = "Role updated successfully!", user });
     }

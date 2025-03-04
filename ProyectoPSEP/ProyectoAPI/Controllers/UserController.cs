@@ -21,13 +21,10 @@ public class UserController : ControllerBase
             return BadRequest("Invalid user data");
         user.Id = _userService.GetNextUserId();
         user.Password =  _userService.HashPassword(user.Password);
-        
-        // TODO: Add Email Encryption
+        user.Email = Convert.ToBase64String(_userService.EncryptEmail(user.Email),0,_userService.EncryptEmail(user.Email).Length);
         await Task.Run(() => _userService.Users.Add(user)); // Simulate async work
         return Ok(new { message = "User added successfully!", user });
     }
-
-    // TODO: VerifyUser AKA Login
 
     // POST: Verifies the user and shows their info 
     [HttpPost]

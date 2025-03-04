@@ -508,3 +508,5 @@ C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\scopedcss
 C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\Proyecto.1482B326.Up2Date
 C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\ProyectoAPI.genruntimeconfig.cache
 C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\ref\ProyectoAPI.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Datasets\test-data-game.json
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Datasets\test-data-user.json

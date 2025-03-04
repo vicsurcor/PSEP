@@ -8,7 +8,6 @@ using System.Text;
 public class UserService
 {
     public string path = "Datasets/";
-    public static HashAlgorithm sha512 = sha512;
     public List<User> Users { get; private set; } = new List<User>();
     private int _nextUserId;
 
@@ -46,15 +45,17 @@ public class UserService
     }
 
     // TODO: Encryption and Hashing Methods
+    // AllCaps Required
     public string HashPassword(string password){
-        using (sha512.Create()){
-            return GetHash(sha512, password);
+        using (SHA512 SHA512 = SHA512.Create()){
+            return GetHash(SHA512, password);
         }
         
     }
+    // AllCaps Required
     public bool VerifyPassword(string password, string password2){
-        using (sha512.Create()){
-            return VerifyHash(sha512, password, password2);
+        using (SHA512 SHA512 = SHA512.Create()){
+            return VerifyHash(SHA512, password, password2);
         }
     }
 
@@ -74,7 +75,6 @@ public class UserService
             // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {
-                Console.WriteLine(data.Length * 2);
                 sBuilder.Append(data[i].ToString("x2"));
             }
 

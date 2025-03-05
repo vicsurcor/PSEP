@@ -7,8 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 
-
-//TODO : Roles
 //TODO : Firebase Integration
 //TODO : Video Demo
 //TODO : Document

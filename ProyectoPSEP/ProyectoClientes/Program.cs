@@ -12,10 +12,10 @@ public class Program
 
     private static async Task Main(string[] args)
     {
-        string apiUrlGame = "http://localhost:5001/api/Game";
-        string apiUrlUser = "http://localhost:5001/api/User";
-        TestGames(apiUrlGame);
-        TestUsers(apiUrlUser);
+        string apiUrlGame = "https://localhost:5001/api/Game";
+        string apiUrlUser = "https://localhost:5001/api/User";
+        await TestGames(apiUrlGame);
+        await TestUsers(apiUrlUser);
         
     }
     // Testing game Methods
@@ -34,10 +34,11 @@ public class Program
         await GetAllGames(apiUrlGame);
     }
     // Testing user Methods
-    private async Task TestUsers(string apiUrlUser) {
+    private static async Task TestUsers(string apiUrlUser) {
         await RegisterUser(apiUrlUser);
         await UpdateUser(apiUrlUser, "TestUser");
-        await DeleteUserAdmin(apiUrlUser, "Updated Test User");
+        await DeleteUserAdmin(apiUrlUser, "UpdatedTestUser");
+        
     }
     // Method to POST a single game
     private static async Task AddGame(string apiUrlGame)
@@ -72,6 +73,7 @@ public class Program
     // Method to GET all games
     private static async Task GetAllGames(string apiUrlGame)
     {
+        Console.WriteLine(apiUrlGame);
         var response = await client.GetAsync(apiUrlGame);
         if (response.IsSuccessStatusCode)
         {
@@ -140,7 +142,7 @@ public class Program
             Email = "TestEmail",
             Password = "TestPassword",
             Role = "Client"
-        }
+        };
 
         // Serialize the game object to JSON using Newtonsoft.Json
         string jsonContent = JsonConvert.SerializeObject(newUser);
@@ -159,18 +161,20 @@ public class Program
         }
     }
     // Method to PUT (Update) a users username and pass
-    private async Task UpdateUser(string apiUrlUser, string username) {
+    private static async Task UpdateUser(string apiUrlUser, string username) {
         var updatedUser = new {
-            UserName = "Updated Test User",
-            Password = "Updated Test Password"
-        }
+            UserName = "UpdatedTestUser",
+            Email = "",
+            Password = "UpdatedTestPassword",
+            Role = ""
+        };
 
         // Serialize the game object to JSON using Newtonsoft.Json
-        string jsonContent = JsonConvert.SerializeObject(newUser);
+        string jsonContent = JsonConvert.SerializeObject(updatedUser);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
         
 
-        var response = await client.PostAsync($"{apiUrlUser}/{username}", content);
+        var response = await client.PutAsync($"{apiUrlUser}/{username}", content);
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("\nUser updated successfully.\n");
@@ -182,11 +186,11 @@ public class Program
         }
     }
     // Method for an Admin to DELETE a user
-    private async Task DeleteUserAdmin(string apiUrlUser, string username) {
+    private static async Task DeleteUserAdmin(string apiUrlUser, string username) {
         var response = await client.DeleteAsync($"{apiUrlUser}/delete/admin/{username}");
         if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("\User deleted successfully.\n");
+            Console.WriteLine("\nUser deleted successfully.\n");
         }
         else
         {
@@ -195,18 +199,18 @@ public class Program
         }
     }
     // Method for a Client to DELETE its user
-    private async Task DeleteUserClient(string apiUrlUser, string username, string password) {
+    private static async Task DeleteUserClient(string apiUrlUser, string username, string password) {
         var userPassword = new {
             Password = password,
-        }
+        };
 
         string jsonContent = JsonConvert.SerializeObject(userPassword);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-        var response = await client.DeleteAsync($"{apiUrlUser}/delete/client/{username}", content);
+        var response = await client.PostAsync($"{apiUrlUser}/delete/client/{username}", content);
         if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("\User deleted successfully.\n");
+            Console.WriteLine("\nUser deleted successfully.\n");
         }
         else
         {

@@ -64,7 +64,7 @@ public class UserController : ControllerBase
     }
 
     // PUT: Updates a users role
-    [HttpPut("/role/{id}")]
+    [HttpPut("role/{id}")]
     //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateUserRole(int id)
     {
@@ -83,11 +83,12 @@ public class UserController : ControllerBase
     }
 
     // DELETE: Deletes a single user
-    [HttpDelete("/delete/admin")]
+    [HttpDelete("delete/admin/{username}")]
     //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteUserAdmin(string username)
     {
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
+        Console.WriteLine(user.UserName);
         if (user == null)
             return NotFound("User not found.");
 
@@ -96,11 +97,12 @@ public class UserController : ControllerBase
     }
 
     // DELETE: Deletes a single user
-    [HttpDelete("/delete/client")]
+    // POST since it needs a body input 
+    [HttpPost("delete/client/{username}")]
     //[Authorize(Roles = "Client")]
     public async Task<IActionResult> DeleteUserClient(string username, [FromBody] User user)
     {
-        var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == user.UserName)); // Simulate async work
+        var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
         if (userSaved == null)
             return NotFound("User not found.");
         if (_userService.VerifyPassword(user.Password, userSaved.Password) == false)

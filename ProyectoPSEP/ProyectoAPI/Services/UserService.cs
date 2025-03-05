@@ -27,7 +27,7 @@ public class UserService
         {
             string jsonData = File.ReadAllText(filePath);
             Users = JsonConvert.DeserializeObject<List<User>>(jsonData) ?? new List<User>();
-
+            
             foreach (var user in Users)
             {
                 
@@ -35,7 +35,6 @@ public class UserService
                 if (user.Password != HashPassword(user.Password)){
                     user.Password = HashPassword(user.Password);
                 }
-
                 // Encrypt email if not already encrypted
                 if (Encoding.ASCII.GetBytes(user.Email) != EncryptEmail(user.Email)){
                     user.Email = Convert.ToBase64String(EncryptEmail(user.Email), 0, EncryptEmail(user.Email).Length);

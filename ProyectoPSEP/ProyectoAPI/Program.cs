@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-//TODO : Add 2 ASync Clients
+//TODO : Test and Fix Clients
 //TODO : Roles
 //TODO : Firebase Integration
 //TODO : Video Demo

@@ -1,17 +1,19 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-//[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
 {
     private readonly UserService _userService;
+    private readonly JwtService _jwtService;
     private static int _nextUserId;
 
-    public UserController(UserService userService)
+    public UserController(UserService userService, JwtService jwtService)
     {
         _userService = userService;
+        _jwtService = jwtService;
     }
 
     // POST: Add a single User
@@ -26,21 +28,32 @@ public class UserController : ControllerBase
         return Ok(new { message = "User added successfully!", user });
     }
 
-    // POST: Verifies the user and shows their info 
+    // POST: Verifies the user, shows their info and distributes a JWT Token
     [HttpPost]
-    public async Task<IActionResult> Login([FromBody] User user){
+    public async Task<IActionResult> Login([Bind("UserName", "Password")] User user){
         var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == user.UserName)); // Simulate async work
         if (userSaved == null)
             return NotFound("User not found.");
         if (_userService.VerifyPassword(user.Password, userSaved.Password) == false)
             return BadRequest("Passwords don't match");
-            
-        return Ok(new { message = "User verified successfully!", user });
+
+        if (userSaved.Role == "Admin") {
+            var token = _jwtService.GenerateToken(user.UserName, "Admin");
+            Console.WriteLine(token);
+            return Ok(new { message = "User verified successfully!", user ,token});
+        } else if (userSaved.Role == "Client") {
+            var token = _jwtService.GenerateToken(user.UserName, "Client");
+            return Ok(new { message = "User verified successfully!", user , token});
+        } else {
+            return BadRequest("Invalid Role");
+        }
+        
+        
     }
 
     // GET: Retrieve all users
     [HttpGet("get")]
-    //[Authorize(Role = "Admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetUsers()
     {
         return Ok(await Task.Run(() => _userService.Users)); // Simulate async work
@@ -48,7 +61,7 @@ public class UserController : ControllerBase
 
     // PUT: Updates a single user by username
     [HttpPut("{username}")]
-    public async Task<IActionResult> UpdateUser(string username, [FromBody] User updatedUser)
+    public async Task<IActionResult> UpdateUser(string username, [Bind("UserName", "Password")] User updatedUser)
     {
         if (updatedUser == null)
             return BadRequest("Invalid user data.");
@@ -65,7 +78,7 @@ public class UserController : ControllerBase
 
     // PUT: Updates a users role
     [HttpPut("role/{id}")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateUserRole(int id)
     {
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.Id == id)); // Simulate async work
@@ -84,7 +97,7 @@ public class UserController : ControllerBase
 
     // DELETE: Deletes a single user
     [HttpDelete("delete/admin/{username}")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteUserAdmin(string username)
     {
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
@@ -99,8 +112,8 @@ public class UserController : ControllerBase
     // DELETE: Deletes a single user
     // POST since it needs a body input 
     [HttpPost("delete/client/{username}")]
-    //[Authorize(Roles = "Client")]
-    public async Task<IActionResult> DeleteUserClient(string username, [FromBody] User user)
+    [Authorize(Roles = "Client")]
+    public async Task<IActionResult> DeleteUserClient(string username, [Bind("UserName", "Password")] User user)
     {
         var userSaved = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
         if (userSaved == null)

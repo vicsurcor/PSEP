@@ -4,45 +4,89 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;  // Add Newtonsoft.Json namespace
+using Newtonsoft.Json;
+
 
 public class Program
 {
     private static readonly HttpClient client = new HttpClient();
+    private static string authToken;
 
     private static async Task Main(string[] args)
     {
         string apiUrlGame = "https://localhost:5001/api/Game";
         string apiUrlUser = "https://localhost:5001/api/User";
-        await TestGames(apiUrlGame);
-        await TestUsers(apiUrlUser);
+        await GetToken(apiUrlUser, "vicsurcor", "12345");
+        await TestGames(apiUrlGame, authToken);
+        await TestUsers(apiUrlUser, authToken);
         
     }
+    private static async Task GetToken(string apiUrlUser, string username, string password) {
+        var loginData = new
+        {
+            UserName = username,
+            Email = "",
+            Password = password,
+            Role = ""
+        };
+
+        var json = JsonConvert.SerializeObject(loginData);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await client.PostAsync($"{apiUrlUser}", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Read the response content
+            var responseContent = await response.Content.ReadAsStringAsync();
+            
+            // Deserialize the response to extract the token
+            var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
+
+            // Use the token
+            var token = loginResponse?.Token;
+
+            // If the token is null or empty, handle the error
+            if (string.IsNullOrEmpty(token))
+            {
+                Console.WriteLine("Error: Token not found in the response.");
+            }
+            else
+            {
+                authToken = token;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Login failed: " + response.ReasonPhrase);
+        }
+    }
     // Testing game Methods
-    private static async Task TestGames(string apiUrlGame) {
+    private static async Task TestGames(string apiUrlGame, string token) {
 
         await GetAllGames(apiUrlGame);
         // Test Add Single Game (POST)
-        await AddGame(apiUrlGame);
+        await AddGame(apiUrlGame, token);
         // Test Get All Games (GET)
         await GetAllGames(apiUrlGame);
         // Test Update Game (PUT)
-        await UpdateGame(apiUrlGame, 1); // assuming game with id=1 exists
+        await UpdateGame(apiUrlGame, 1, token); // assuming game with id=1 exists
         await GetAllGames(apiUrlGame);
         // Test Delete Game (DELETE)
-        await DeleteGame(apiUrlGame, 2); // assuming game with id=2 exists
+        await DeleteGame(apiUrlGame, 2, token); // assuming game with id=2 exists
         await GetAllGames(apiUrlGame);
     }
     // Testing user Methods
-    private static async Task TestUsers(string apiUrlUser) {
+    private static async Task TestUsers(string apiUrlUser, string token) {
         await RegisterUser(apiUrlUser);
         await UpdateUser(apiUrlUser, "TestUser");
-        await DeleteUserAdmin(apiUrlUser, "UpdatedTestUser");
+        await DeleteUserAdmin(apiUrlUser, "UpdatedTestUser", token);
         
     }
     // Method to POST a single game
-    private static async Task AddGame(string apiUrlGame)
+    private static async Task AddGame(string apiUrlGame, string token)
     {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         var newGame = new
         {
             Name = "Test Game",
@@ -94,8 +138,9 @@ public class Program
         }
     }
     // Method to PUT (Update) a game
-    private static async Task UpdateGame(string apiUrlGame, int gameId)
+    private static async Task UpdateGame(string apiUrlGame, int gameId, string token)
     {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         var updatedGame = new
         {
             Name = "Updated Test Game",
@@ -122,8 +167,9 @@ public class Program
         }
     }
     // Method to DELETE a game
-    private static async Task DeleteGame(string apiUrlGame, int gameId)
+    private static async Task DeleteGame(string apiUrlGame, int gameId, string token)
     {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         var response = await client.DeleteAsync($"{apiUrlGame}/{gameId}");
         if (response.IsSuccessStatusCode)
         {
@@ -186,7 +232,8 @@ public class Program
         }
     }
     // Method for an Admin to DELETE a user
-    private static async Task DeleteUserAdmin(string apiUrlUser, string username) {
+    private static async Task DeleteUserAdmin(string apiUrlUser, string username, string token) {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         var response = await client.DeleteAsync($"{apiUrlUser}/delete/admin/{username}");
         if (response.IsSuccessStatusCode)
         {
@@ -199,7 +246,8 @@ public class Program
         }
     }
     // Method for a Client to DELETE its user
-    private static async Task DeleteUserClient(string apiUrlUser, string username, string password) {
+    private static async Task DeleteUserClient(string apiUrlUser, string username, string password, string token) {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         var userPassword = new {
             Password = password,
         };
@@ -219,8 +267,10 @@ public class Program
         }
     }
 }
-public class DLC
+public class LoginResponse
 {
-    public string Name { get; set; }
-    public double Price { get; set; }
+    public string Message { get; set; }
+    public User user{ get; set; }
+    public string Token { get; set; }
+    
 }

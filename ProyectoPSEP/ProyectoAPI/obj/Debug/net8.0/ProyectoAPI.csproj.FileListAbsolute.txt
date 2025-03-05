@@ -510,3 +510,11 @@ C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\ProyectoA
 C:\Users\AlumTA\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\obj\Debug\net8.0\ref\ProyectoAPI.dll
 C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Datasets\test-data-game.json
 C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Datasets\test-data-user.json
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\vdsur\Desktop\PSEP\ProyectoPSEP\ProyectoAPI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

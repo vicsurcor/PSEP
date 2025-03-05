@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "name": "Elden Ring",
+      "genre": "Action RPG",
+      "price": 59.99,
+      "dlcs": [
+        {
+          "name": "Shadow of the Erdtree",
+          "price": 29.99
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "The Witcher 3",
+      "genre": "RPG",
+      "price": 39.99,
+      "dlcs": [
+        {
+          "name": "Hearts of Stone",
+          "price": 9.99
+        },
+        {
+          "name": "Blood and Wine",
+          "price": 19.99
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cyberpunk 2077",
+      "genre": "RPG",
+      "price": 49.99,
+      "dlcs": [
+        {
+          "name": "Phantom Liberty",
+          "price": 29.99
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "DOOM Eternal",
+      "genre": "FPS",
+      "price": 39.99,
+      "dlcs": []
+    },
+    {
+      "id": 5,
+      "name": "Hollow Knight",
+      "genre": "Metroidvania",
+      "price": 14.99,
+      "dlcs": [
+        {
+          "name": "Godmaster",
+          "price": 4.99
+        },
+        {
+          "name": "Lifeblood",
+          "price": 2.99
+        }
+      ]
+    }
+  ]
+  

@@ -78,6 +78,7 @@ public class Program
     }
     // Testing user Methods
     private static async Task TestUsers(string apiUrlUser, string token) {
+        
         await RegisterUser(apiUrlUser);
         await UpdateUser(apiUrlUser, "TestUser");
         await DeleteUserAdmin(apiUrlUser, "UpdatedTestUser", token);

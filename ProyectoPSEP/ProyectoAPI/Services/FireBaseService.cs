@@ -1,17 +1,39 @@
 using Google.Cloud.Firestore;
+using FirebaseAdmin;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
 
-namespace ProyectoAPI.Services
-{
-    public class FirebaseService
+
+    public class FireBaseService
     {
         private FirestoreDb _firestoreDb;
 
-        public FirebaseService()
+        public FireBaseService()
         {
+            string credentialsPath = Path.Combine(Directory.GetCurrentDirectory(), "FireBase", "proyectopsep-firebase-adminsdk-fbsvc-ed38ba0352.json");
+
+            // Check if file exists before setting the variable
+            if (!File.Exists(credentialsPath))
+            {
+                throw new FileNotFoundException("Firebase credentials file not found.", credentialsPath);
+            }
+
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
+
+            // Ensure FirebaseApp is created only once
+            if (FirebaseApp.DefaultInstance == null)
+            {
+                FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile(credentialsPath)
+                });
+            }
+
             _firestoreDb = FirestoreDb.Create("proyectopsep"); // Replace with your Firebase project ID
         }
+
 
         public async Task<List<User>> GetUsers()
         {
@@ -49,17 +71,40 @@ namespace ProyectoAPI.Services
 
         public async Task UpdateUser(string username, Dictionary<string, object> updatedFields)
         {
-            DocumentReference userRef = _firestoreDb.Collection("Users").Document(username);
-            await userRef.UpdateAsync(updatedFields);
+            var userRef = _firestoreDb.Collection("User");
+            var query = userRef.WhereEqualTo("UserName", username);
+
+            // Execute the query and get the first matching document (if it exists)
+            var snapshot = await query.Limit(1).GetSnapshotAsync();
+
+            // Check if any document was found
+            if (snapshot.Documents.Count > 0)
+            {
+                var docRef = snapshot.Documents.First().Reference;
+                await docRef.UpdateAsync(updatedFields); // Return the first document found
+            }
+            
+            
         }
 
         public async Task DeleteUser(string username)
         {
-            DocumentReference userRef = _firestoreDb.Collection("Users").Document(username);
-            await userRef.DeleteAsync();
+            var userRef = _firestoreDb.Collection("User");
+            var query = userRef.WhereEqualTo("UserName", username);
+
+            // Execute the query and get the first matching document (if it exists)
+            var snapshot = await query.Limit(1).GetSnapshotAsync();
+
+            // Check if any document was found
+            if (snapshot.Documents.Count > 0)
+            {
+                var docRef = snapshot.Documents.First().Reference;
+                await docRef.DeleteAsync(); // Return the first document found
+            }
+            
         }
 
-        public async Task<List<Games>> GetGames()
+        public async Task<List<Game>> GetGames()
         {
             CollectionReference gamesRef = _firestoreDb.Collection("Games");
             QuerySnapshot snapshot = await gamesRef.GetSnapshotAsync();
@@ -95,12 +140,12 @@ namespace ProyectoAPI.Services
 
         public async Task AddMultipleGames(List<Game> games)
         {
-            var db = FirebaseFirestore.DefaultInstance;
-            var batch = db.StartBatch();
+            
+            var batch = _firestoreDb.StartBatch();
 
             foreach (var game in games)
             {
-                var gameRef = db.Collection("Games").Document(game.Id.ToString());
+                var gameRef = _firestoreDb.Collection("Games").Document(game.Id.ToString());
                 batch.Set(gameRef, game);
             }
 
@@ -109,19 +154,19 @@ namespace ProyectoAPI.Services
 
         public async Task DeleteGame(string gameId)
         {
-            var db = FirebaseFirestore.DefaultInstance;
-            var gameRef = db.Collection("Games").Document(gameId);
+            
+            var gameRef = _firestoreDb.Collection("Games").Document(gameId);
             await gameRef.DeleteAsync();
         }
 
-        public async Task DeleteMultipleGames(List<string> gameIds)
+        public async Task DeleteMultipleGames(List<int> gameIds)
         {
-            var db = FirebaseFirestore.DefaultInstance;
-            var batch = db.StartBatch();
+           
+            var batch = _firestoreDb.StartBatch();
 
             foreach (var gameId in gameIds)
             {
-                var gameRef = db.Collection("Games").Document(gameId);
+                var gameRef = _firestoreDb.Collection("Games").Document(gameId.ToString());
                 batch.Delete(gameRef);
             }
 
@@ -130,12 +175,10 @@ namespace ProyectoAPI.Services
 
         public async Task UpdateGame(string gameId, Dictionary<string, object> updates)
         {
-            var db = FirebaseFirestore.DefaultInstance;
-            var gameRef = db.Collection("Games").Document(gameId);
+            
+            var gameRef = _firestoreDb.Collection("Games").Document(gameId);
             await gameRef.UpdateAsync(updates);
         }
 
     }
     
-
-}

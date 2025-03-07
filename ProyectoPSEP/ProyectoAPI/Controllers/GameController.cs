@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 // Partial Updates to an Object in a request should be handled with Patch instead#.
 [ApiController]
 [Route("api/[controller]")]
@@ -60,7 +59,7 @@ public class GameController : ControllerBase
         var game = await Task.Run(() => _gameService.Games.FirstOrDefault(g => g.Id == id)); // Simulate async work
         if (game == null)
             return NotFound("Game not found.");
-        await _firebaseService.GetGame(game.Id);
+        await _firebaseService.GetGame(game.Id.ToString());
         return Ok(game);
     }
 
@@ -91,7 +90,7 @@ public class GameController : ControllerBase
         updates["Price"] = updatedGame.Price;
         updates["Dlcs"] = updatedGame.Dlcs;
 
-        await _firebaseService.UpdateGame(game.id, updates);
+        await _firebaseService.UpdateGame(game.Id.ToString(), updates);
 
         game.Name = updatedGame.Name;
         game.Genre = updatedGame.Genre;
@@ -109,34 +108,37 @@ public class GameController : ControllerBase
         if (updatedGames == null || updatedGames.Count == 0)
             return BadRequest("Invalid games data.");
 
-        await Task.Run(() =>
+        var tasks = new List<Task>();
+
+        foreach (var updatedGame in updatedGames)
         {
-            var tasks = new List<Task>();
-            foreach (var updatedGame in updatedGames)
+            var game = _gameService.Games.FirstOrDefault(g => g.Id == updatedGame.Id);
+            if (game != null)
             {
-                var game = _gameService.Games.FirstOrDefault(g => g.Id == updatedGame.Id);
-                if (game != null)
-                {
-                    var updates = new Dictionary<string, object>();
+                var updates = new Dictionary<string, object>();
 
-                    updates["Name"] = updatedGame.Name;
-                    updates["Genre"] = updatedGame.Genre;
-                    updates["Price"] = updatedGame.Price;
-                    updates["Dlcs"] = updatedGame.Dlcs;
+                updates["Name"] = updatedGame.Name;
+                updates["Genre"] = updatedGame.Genre;
+                updates["Price"] = updatedGame.Price;
+                updates["Dlcs"] = updatedGame.Dlcs;
 
-                    tasks.Add(_firebaseService.UpdateGame(game.id, updates));
+                // Add the asynchronous task for Firebase update to the tasks list
+                tasks.Add(_firebaseService.UpdateGame(game.Id.ToString(), updates));
 
-                    game.Name = updatedGame.Name;
-                    game.Genre = updatedGame.Genre;
-                    game.Price = updatedGame.Price;
-                    game.Dlcs = updatedGame.Dlcs;
-                }
+                // Update the local game object
+                game.Name = updatedGame.Name;
+                game.Genre = updatedGame.Genre;
+                game.Price = updatedGame.Price;
+                game.Dlcs = updatedGame.Dlcs;
             }
-            await Task.WhenAll(tasks);
-        });
+        }
+
+        // Wait for all Firebase update tasks to complete
+        await Task.WhenAll(tasks);
 
         return Ok(new { message = "Multiple games updated successfully!" });
     }
+
 
     // DELETE: Delete a game by ID
     [HttpDelete("{id}")]
@@ -147,7 +149,7 @@ public class GameController : ControllerBase
         if (game == null)
             return NotFound("Game not found.");
 
-        await _firebaseService.DeleteGame(game.Id);
+        await _firebaseService.DeleteGame(game.Id.ToString());
         await Task.Run(() => _gameService.Games.Remove(game)); // Simulate async work
         return Ok(new { message = "Game deleted successfully!" });
     }
@@ -189,7 +191,7 @@ public class GameController : ControllerBase
 
         game.Stock--;
         updates["Stock"] = game.Stock;
-        await _firebaseService.UpdateGame(id, updates);
+        await _firebaseService.UpdateGame(id.ToString(), updates);
 
         return Ok(new { message = "Purchase completed successfully!", game });
     }

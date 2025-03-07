@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Google.Cloud.Firestore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -76,7 +77,7 @@ public class UserController : ControllerBase
         var updates = new Dictionary<string, object>();
         updates["UserName"] = updatedUser.UserName;
         updates["Password"] = _userService.HashPassword(updatedUser.Password);
-        await _firebaseService.UpdateUser(user, updates);
+        await _firebaseService.UpdateUser(user.UserName, updates);
         user.UserName = updatedUser.UserName;
         user.Password = _userService.HashPassword(updatedUser.Password);
         
@@ -100,7 +101,7 @@ public class UserController : ControllerBase
             updates["Role"] = "Admin";
             user.Role = "Admin";
         }
-        await _firebaseService.UpdateUser(user, updates);
+        await _firebaseService.UpdateUser(user.UserName, updates);
         return Ok(new { message = "Role updated successfully!", user });
     }
 

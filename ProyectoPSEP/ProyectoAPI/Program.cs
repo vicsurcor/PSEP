@@ -63,7 +63,7 @@ builder.Services.AddSwaggerGen(options =>
 // Initialize Firebase
 FirebaseApp.Create(new AppOptions()
 {
-    Credential = GoogleCredential.FromFile("ProyectoPSEP/FireBase/proyectopsep-firebase-adminsdk-fbsvc-ed38ba0352.json")
+    Credential = GoogleCredential.FromFile("FireBase/proyectopsep-firebase-adminsdk-fbsvc-ed38ba0352.json")
 });
 
 
@@ -71,6 +71,7 @@ FirebaseApp.Create(new AppOptions()
 builder.Services.AddSingleton<GameService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<JwtService>();
+builder.Services.AddSingleton<FireBaseService>();
 
 builder.Services.AddAuthorization();
 

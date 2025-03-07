@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 //TODO : Firebase Integration
 //TODO : Video Demo
@@ -56,6 +58,12 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+});
+
+// Initialize Firebase
+FirebaseApp.Create(new AppOptions()
+{
+    Credential = GoogleCredential.FromFile("ProyectoPSEP/FireBase/proyectopsep-firebase-adminsdk-fbsvc-ed38ba0352.json")
 });
 
 

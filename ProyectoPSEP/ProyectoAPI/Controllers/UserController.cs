@@ -8,12 +8,14 @@ public class UserController : ControllerBase
 {
     private readonly UserService _userService;
     private readonly JwtService _jwtService;
+    private readonly FireBaseService _firebaseService;
     private static int _nextUserId;
 
-    public UserController(UserService userService, JwtService jwtService)
+    public UserController(UserService userService, JwtService jwtService, FireBaseService firebaseService)
     {
         _userService = userService;
         _jwtService = jwtService;
+        _firebaseService = firebaseService;
     }
 
     // POST: Add a single User
@@ -24,6 +26,7 @@ public class UserController : ControllerBase
         user.Id = _userService.GetNextUserId();
         user.Password =  _userService.HashPassword(user.Password);
         user.Email = Convert.ToBase64String(_userService.EncryptEmail(user.Email),0,_userService.EncryptEmail(user.Email).Length);
+        await _firebaseService.AddUser(user);
         await Task.Run(() => _userService.Users.Add(user)); // Simulate async work
         return Ok(new { message = "User added successfully!", user });
     }
@@ -56,6 +59,7 @@ public class UserController : ControllerBase
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetUsers()
     {
+        await _firebaseService.GetUsers();
         return Ok(await Task.Run(() => _userService.Users)); // Simulate async work
     }
 
@@ -69,10 +73,13 @@ public class UserController : ControllerBase
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
         if (user == null)
             return NotFound("User not found.");
-
+        var updates = new Dictionary<string, object>();
+        updates["UserName"] = updatedUser.UserName;
+        updates["Password"] = _userService.HashPassword(updatedUser.Password);
+        await _firebaseService.UpdateUser(user, updates);
         user.UserName = updatedUser.UserName;
         user.Password = _userService.HashPassword(updatedUser.Password);
-
+        
         return Ok(new { message = "User updated successfully!", user });
     }
 
@@ -84,14 +91,16 @@ public class UserController : ControllerBase
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.Id == id)); // Simulate async work
         if (user == null)
             return NotFound("User not found.");
-
+        var updates = new Dictionary<string, object>();
         if (user.Role == "Admin") {
+            updates["Role"] = "Client";
             user.Role = "Client";
         }
         else {
+            updates["Role"] = "Admin";
             user.Role = "Admin";
         }
-
+        await _firebaseService.UpdateUser(user, updates);
         return Ok(new { message = "Role updated successfully!", user });
     }
 
@@ -104,7 +113,7 @@ public class UserController : ControllerBase
         Console.WriteLine(user.UserName);
         if (user == null)
             return NotFound("User not found.");
-
+        await _firebaseService.DeleteUser(user.UserName);
         await Task.Run(() => _userService.Users.Remove(user)); // Simulate async work
         return Ok(new { message = "User deleted successfully!" });
     }
@@ -120,6 +129,7 @@ public class UserController : ControllerBase
             return NotFound("User not found.");
         if (_userService.VerifyPassword(user.Password, userSaved.Password) == false)
             return BadRequest("Passwords don't match");
+        await _firebaseService.DeleteUser(userSaved.UserName);
         await Task.Run(() => _userService.Users.Remove(userSaved)); // Simulate async work
         return Ok(new { message = "User deleted successfully!" });
     }

@@ -5,16 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+
+// Partial Updates to an Object in a request should be handled with Patch instead#.
 [ApiController]
 [Route("api/[controller]")]
 public class GameController : ControllerBase
 {
     private readonly GameService _gameService;
+    private readonly FireBaseService _firebaseService;
     private static int _nextGameId;
 
-    public GameController(GameService gameService)
+    public GameController(GameService gameService, FireBaseService firebaseService)
     {
         _gameService = gameService;
+        _firebaseService = firebaseService;
     }
 
     // POST: Add a single game
@@ -25,6 +29,7 @@ public class GameController : ControllerBase
         if (game == null)
             return BadRequest("Invalid game data.");
         game.Id = _gameService.GetNextGameId();
+        await _firebaseService.AddGame(game);
         await Task.Run(() => _gameService.Games.Add(game)); // Simulate async work
         return Ok(new { message = "Game added successfully!", game });
     }
@@ -42,6 +47,7 @@ public class GameController : ControllerBase
             game.Id = _gameService.GetNextGameId();
 
         }
+        await _firebaseService.AddMultipleGames(newGames);
         await Task.Run(() => _gameService.Games.AddRange(newGames)); // Simulate async work
         return Ok(new { message = "Games added successfully!", games = _gameService.Games });
     }
@@ -54,7 +60,7 @@ public class GameController : ControllerBase
         var game = await Task.Run(() => _gameService.Games.FirstOrDefault(g => g.Id == id)); // Simulate async work
         if (game == null)
             return NotFound("Game not found.");
-
+        await _firebaseService.GetGame(game.Id);
         return Ok(game);
     }
 
@@ -62,6 +68,7 @@ public class GameController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllGames()
     {
+        await _firebaseService.GetGames();
         return Ok(await Task.Run(() => _gameService.Games)); // Simulate async work
     }
 
@@ -77,11 +84,20 @@ public class GameController : ControllerBase
         if (game == null)
             return NotFound("Game not found.");
 
+        var updates = new Dictionary<string, object>();
+
+        updates["Name"] = updatedGame.Name;
+        updates["Genre"] = updatedGame.Genre;
+        updates["Price"] = updatedGame.Price;
+        updates["Dlcs"] = updatedGame.Dlcs;
+
+        await _firebaseService.UpdateGame(game.id, updates);
+
         game.Name = updatedGame.Name;
         game.Genre = updatedGame.Genre;
         game.Price = updatedGame.Price;
         game.Dlcs = updatedGame.Dlcs;
-
+        
         return Ok(new { message = "Game updated successfully!", game });
     }
 
@@ -95,17 +111,28 @@ public class GameController : ControllerBase
 
         await Task.Run(() =>
         {
+            var tasks = new List<Task>();
             foreach (var updatedGame in updatedGames)
             {
                 var game = _gameService.Games.FirstOrDefault(g => g.Id == updatedGame.Id);
                 if (game != null)
                 {
+                    var updates = new Dictionary<string, object>();
+
+                    updates["Name"] = updatedGame.Name;
+                    updates["Genre"] = updatedGame.Genre;
+                    updates["Price"] = updatedGame.Price;
+                    updates["Dlcs"] = updatedGame.Dlcs;
+
+                    tasks.Add(_firebaseService.UpdateGame(game.id, updates));
+
                     game.Name = updatedGame.Name;
                     game.Genre = updatedGame.Genre;
                     game.Price = updatedGame.Price;
                     game.Dlcs = updatedGame.Dlcs;
                 }
             }
+            await Task.WhenAll(tasks);
         });
 
         return Ok(new { message = "Multiple games updated successfully!" });
@@ -120,6 +147,7 @@ public class GameController : ControllerBase
         if (game == null)
             return NotFound("Game not found.");
 
+        await _firebaseService.DeleteGame(game.Id);
         await Task.Run(() => _gameService.Games.Remove(game)); // Simulate async work
         return Ok(new { message = "Game deleted successfully!" });
     }
@@ -143,7 +171,7 @@ public class GameController : ControllerBase
                 _gameService.Games.Remove(game);
             }
         });
-
+        await _firebaseService.DeleteMultipleGames(gameIds);
         return Ok(new { message = "Multiple games deleted successfully!" });
     }
     
@@ -157,7 +185,11 @@ public class GameController : ControllerBase
         if (game.Stock <= 0)
             return BadRequest("Not enough stock\n Operation Cancelled");
 
+        var updates = new Dictionary<string, object>();
+
         game.Stock--;
+        updates["Stock"] = game.Stock;
+        await _firebaseService.UpdateGame(id, updates);
 
         return Ok(new { message = "Purchase completed successfully!", game });
     }

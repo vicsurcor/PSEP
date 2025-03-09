@@ -21,7 +21,7 @@ public class Game
     [FirestoreProperty]
     public List<DLC> Dlcs { get; set; } = new List<DLC>(); // List of DLCs
 
-    // ✅ Ensure a parameterless constructor
+    // Ensure a parameterless constructor
     public Game() { }
 }
 
@@ -34,6 +34,6 @@ public class DLC
     [FirestoreProperty]
     public double Price { get; set; } // Precio del DLC
 
-    // ✅ Ensure a parameterless 
+    // Ensure a parameterless 
     public DLC() { }
 }

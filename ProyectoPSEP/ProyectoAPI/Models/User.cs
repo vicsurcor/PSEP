@@ -18,7 +18,7 @@ public class User
     [FirestoreProperty]
     public string Role { get; set; } // Rol del Usuario  
 
-    // ✅ Ensure a parameterless constructor
+    // Ensure a parameterless constructor
     public User() { }
 }
 

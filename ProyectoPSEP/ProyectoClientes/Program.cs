@@ -17,10 +17,21 @@ public class Program
         string apiUrlGame = "https://localhost:5001/api/Game";
         string apiUrlUser = "https://localhost:5001/api/User";
         await GetToken(apiUrlUser, "vicsurcor", "12345");
-        await TestGames(apiUrlGame, authToken);
-        await TestUsers(apiUrlUser, authToken);
+        await RunTwoClientsAsync(apiUrlGame, apiUrlUser, authToken);
         
     }
+    private static async Task RunTwoClientsAsync(string userUrl, string gameUrl, string token)
+    {
+        // Start both tasks simultaneously
+        Task task1 = TestGames(apiUrlGame, authToken);
+        Task task2 = TestUsers(apiUrlUser, authToken);
+
+        // Wait for both to complete
+        await Task.WhenAll(task1, task2);
+
+        Console.WriteLine("Both clients have finished their tasks.");
+    }
+    
     private static async Task GetToken(string apiUrlUser, string username, string password) {
         var loginData = new
         {

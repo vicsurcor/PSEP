@@ -20,18 +20,18 @@ public class Program
         await RunTwoClientsAsync(apiUrlGame, apiUrlUser, authToken);
         
     }
-    private static async Task RunTwoClientsAsync(string userUrl, string gameUrl, string token)
+    private static async Task RunTwoClientsAsync(string gameUrl, string userUrl, string token)
     {
         // Start both tasks simultaneously
-        Task task1 = TestGames(apiUrlGame, authToken);
-        Task task2 = TestUsers(apiUrlUser, authToken);
+        Task task1 = TestGames(gameUrl, authToken);
+        Task task2 = TestUsers(userUrl, authToken);
 
         // Wait for both to complete
         await Task.WhenAll(task1, task2);
 
         Console.WriteLine("Both clients have finished their tasks.");
     }
-    
+
     private static async Task GetToken(string apiUrlUser, string username, string password) {
         var loginData = new
         {
@@ -74,7 +74,7 @@ public class Program
     }
     // Testing game Methods
     private static async Task TestGames(string apiUrlGame, string token) {
-
+        Console.WriteLine("Client 1 started.");
         await GetAllGames(apiUrlGame);
         // Test Add Single Game (POST)
         await AddGame(apiUrlGame, token);
@@ -86,13 +86,18 @@ public class Program
         // Test Delete Game (DELETE)
         await DeleteGame(apiUrlGame, 2, token); // assuming game with id=2 exists
         await GetAllGames(apiUrlGame);
+        Console.WriteLine("Client 1 completed.");
     }
     // Testing user Methods
     private static async Task TestUsers(string apiUrlUser, string token) {
-        
+        Console.WriteLine("Client 2 started.");
         await RegisterUser(apiUrlUser);
+        await GetAllUsers(apiUrlUser, token);
         await UpdateUser(apiUrlUser, "TestUser");
+        await GetAllUsers(apiUrlUser, token);
         await DeleteUserAdmin(apiUrlUser, "UpdatedTestUser", token);
+        await GetAllUsers(apiUrlUser, token);
+        Console.WriteLine("Client 2 completed.");
         
     }
     // Method to POST a single game
@@ -241,6 +246,30 @@ public class Program
         {
             Console.WriteLine(response.StatusCode);
             Console.WriteLine("\nError updating user.\n");
+        }
+    }
+
+    private static async Task GetAllUsers(string apiUrlUser, string token)
+    {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        Console.WriteLine(apiUrlUser);
+        var response = await client.GetAsync(apiUrlUser + "/get");
+        if (response.IsSuccessStatusCode)
+        {
+            // Deserialize the JSON response into a list of dynamic objects
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+            var users = JsonConvert.DeserializeObject<List<dynamic>>(jsonResponse);
+            
+            Console.WriteLine("Users:\n");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"- {user.userName}, {user.email}, ${user.password}, Role: {user.role}");
+            }
+        }
+        else
+        {
+            Console.WriteLine(response.StatusCode);
+            Console.WriteLine("\nError retrieving users.\n");
         }
     }
     // Method for an Admin to DELETE a user

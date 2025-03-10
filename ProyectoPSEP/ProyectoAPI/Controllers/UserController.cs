@@ -43,7 +43,6 @@ public class UserController : ControllerBase
 
         if (userSaved.Role == "Admin") {
             var token = _jwtService.GenerateToken(user.UserName, "Admin");
-            Console.WriteLine(token);
             return Ok(new { message = "User verified successfully!", user ,token});
         } else if (userSaved.Role == "Client") {
             var token = _jwtService.GenerateToken(user.UserName, "Client");
@@ -111,7 +110,6 @@ public class UserController : ControllerBase
     public async Task<IActionResult> DeleteUserAdmin(string username)
     {
         var user = await Task.Run(() => _userService.Users.FirstOrDefault(u => u.UserName == username)); // Simulate async work
-        Console.WriteLine(user.UserName);
         if (user == null)
             return NotFound("User not found.");
         await _firebaseService.DeleteUser(user.UserName);

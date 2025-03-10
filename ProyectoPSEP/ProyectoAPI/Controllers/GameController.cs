@@ -88,6 +88,7 @@ public class GameController : ControllerBase
         updates["Name"] = updatedGame.Name;
         updates["Genre"] = updatedGame.Genre;
         updates["Price"] = updatedGame.Price;
+        updates["Stock"] = updatedGame.Stock;
         updates["Dlcs"] = updatedGame.Dlcs;
 
         await _firebaseService.UpdateGame(game.Id.ToString(), updates);
@@ -95,6 +96,7 @@ public class GameController : ControllerBase
         game.Name = updatedGame.Name;
         game.Genre = updatedGame.Genre;
         game.Price = updatedGame.Price;
+        game.Stock = updatedGame.Stock;
         game.Dlcs = updatedGame.Dlcs;
         
         return Ok(new { message = "Game updated successfully!", game });
@@ -120,6 +122,7 @@ public class GameController : ControllerBase
                 updates["Name"] = updatedGame.Name;
                 updates["Genre"] = updatedGame.Genre;
                 updates["Price"] = updatedGame.Price;
+                updates["Stock"] = updatedGame.Stock;
                 updates["Dlcs"] = updatedGame.Dlcs;
 
                 // Add the asynchronous task for Firebase update to the tasks list
@@ -129,6 +132,7 @@ public class GameController : ControllerBase
                 game.Name = updatedGame.Name;
                 game.Genre = updatedGame.Genre;
                 game.Price = updatedGame.Price;
+                game.Stock = updatedGame.Stock;
                 game.Dlcs = updatedGame.Dlcs;
             }
         }

@@ -109,6 +109,7 @@ public class Program
             Name = "Test Game",
             Genre = "Action",
             Price = 59.99,
+            Stock = 5,
             Dlcs = new List<DLC> { 
                 new DLC { Name = "Dlc 1", Price = 29.99 },
                 new DLC { Name = "Dlc 2", Price = 2.99 }
@@ -145,7 +146,7 @@ public class Program
             Console.WriteLine("Games:\n");
             foreach (var game in games)
             {
-                Console.WriteLine($"- {game.name}, {game.genre}, ${game.price}, DLCs: {game.dlcs.Count}");
+                Console.WriteLine($"- {game.name}, {game.genre}, ${game.price},Stock: {game.Stock}, DLCs: {game.dlcs.Count}");
             }
         }
         else
@@ -163,6 +164,7 @@ public class Program
             Name = "Updated Test Game",
             Genre = "Adventure",
             Price = 49.99,
+            Stock = 3,
             Dlcs = new List<DLC> { 
                 new DLC { Name = "Dlc 2", Price = 2.99 }
             }

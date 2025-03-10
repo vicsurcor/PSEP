@@ -4,6 +4,7 @@
       "name": "Elden Ring",
       "genre": "Action RPG",
       "price": 59.99,
+      "stock": 5,
       "dlcs": [
         {
           "name": "Shadow of the Erdtree",
@@ -16,6 +17,7 @@
       "name": "The Witcher 3",
       "genre": "RPG",
       "price": 39.99,
+      "stock": 10,
       "dlcs": [
         {
           "name": "Hearts of Stone",
@@ -32,6 +34,7 @@
       "name": "Cyberpunk 2077",
       "genre": "RPG",
       "price": 49.99,
+      "stock": 20,
       "dlcs": [
         {
           "name": "Phantom Liberty",
@@ -44,6 +47,7 @@
       "name": "DOOM Eternal",
       "genre": "FPS",
       "price": 39.99,
+      "stock": 2,
       "dlcs": []
     },
     {
@@ -51,6 +55,7 @@
       "name": "Hollow Knight",
       "genre": "Metroidvania",
       "price": 14.99,
+      "stock": 30,
       "dlcs": [
         {
           "name": "Godmaster",
